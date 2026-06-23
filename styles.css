@@ -89,6 +89,11 @@ section .task-column{
     transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+section .task-column.hover-over {
+    border: 2px dashed var(--primary-text-color);
+    scale: 1.05;
+}
+
 section .task-column .heading{
     width: 100%;
     display: flex;
