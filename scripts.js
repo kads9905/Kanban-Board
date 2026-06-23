@@ -8,75 +8,71 @@ let dragElement = null;
 
 function addTask(title, desc, column) {
     const div = document.createElement("div");
-
+            
     div.classList.add("task");
     div.setAttribute("draggable", "true");
+            
     div.innerHTML = `
         <h2>${title}</h2>
         <p>${desc}</p>
         <button>Delete</button>
-    `;
-
+    `
     column.appendChild(div);
-    div.addEventListener("dragstart", () => {
+    div.addEventListener("dragstart", (e) => {
         dragElement = div;
-    });
+    }) 
 
     const deleteButton = div.querySelector("button");
-
     deleteButton.addEventListener("click", () => {
         div.remove();
         updateTaskCount();
-    });
+    })
 }
+
 
 function updateTaskCount() {
     columns.forEach(col => {
-        const tasks = col.querySelectorAll(".task");
-        const count = col.querySelector(".right");
+            const tasks = col.querySelectorAll(".task");
+            const count = col.querySelector(".right");
 
-        tasksData[col.id] = Array.from(tasks).map(t => {
-            return {
-                title: t.querySelector("h2").innerText,
-                desc: t.querySelector("p").innerText
-            };
-        });
+            tasksData[col.id] = Array.from(tasks).map(t => {
+                return {
+                    title: t.querySelector("h2").innerText,
+                    desc: t.querySelector("p").innerText
+                }
+            })
 
-        localStorage.setItem("tasks", JSON.stringify(tasksData));
-
-        count.innerText = tasks.length;
-    });
+            localStorage.setItem("tasks", JSON.stringify(tasksData));
+            count.innerText = tasks.length;
+        })
 }
 
 
 if (localStorage.getItem("tasks")) {
-
-    const data = JSON.parse(localStorage.getItem("tasks"));
-
-    for (const col in data) {
-
+    
+    const data =  JSON.parse(localStorage.getItem("tasks"));
+        
+    for(const col in data){
         const column = document.querySelector(`#${col}`);
-
         data[col].forEach(task => {
-            addTask(task.title, task.desc, column);
-        });
-
+            addTask(task.title, task.desc, column);          
+        })
     }
-
     updateTaskCount();
 }
 
-function addDragEventsOnColumn(column) {
 
+
+function addDragEventsOnColumn (column){
     column.addEventListener("dragenter", (e) => {
         e.preventDefault();
         column.classList.add("hover-over");
-    });
-
+    })
+    
     column.addEventListener("dragleave", (e) => {
         e.preventDefault();
         column.classList.remove("hover-over");
-    });
+    })
 
     column.addEventListener("dragover", (e) => {
         e.preventDefault();
@@ -84,33 +80,38 @@ function addDragEventsOnColumn(column) {
 
     column.addEventListener("drop", (e) => {
         e.preventDefault();
-
+        
         column.appendChild(dragElement);
         column.classList.remove("hover-over");
 
         updateTaskCount();
+
+
     });
+
 }
 
 addDragEventsOnColumn(todo);
 addDragEventsOnColumn(progress);
 addDragEventsOnColumn(done);
 
+
+/* Modal related logic */
+
 const toggleModalButton = document.querySelector("#toggle-modal");
 const modalBg = document.querySelector(".modal .bg");
 const modal = document.querySelector(".modal");
-const addTaskButton = document.querySelector("#add-new-task");
+const addTaskButton = document.querySelector("#add-new-task")
 
 toggleModalButton.addEventListener("click", () => {
     modal.classList.toggle("active");
-});
+})
 
 modalBg.addEventListener("click", () => {
     modal.classList.remove("active");
-});
+})
 
-
-addTaskButton.addEventListener("click", () => {
+addTaskButton.addEventListener("click", ()=> {
 
     const taskTitle = document.querySelector("#task-title-input").value;
     const taskDesc = document.querySelector("#task-desc-input").value;
@@ -120,7 +121,7 @@ addTaskButton.addEventListener("click", () => {
         return;
     }
 
-    addTask(taskTitle, taskDesc, todo);
+    addTask (taskTitle, taskDesc, todo);
 
     updateTaskCount();
 
@@ -128,4 +129,7 @@ addTaskButton.addEventListener("click", () => {
 
     document.querySelector("#task-title-input").value = "";
     document.querySelector("#task-desc-input").value = "";
+
 });
+
+/* Modal related logic */

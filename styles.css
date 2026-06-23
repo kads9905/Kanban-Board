@@ -4,12 +4,12 @@
     box-sizing: border-box;
 }
 
-html, body {
+html, body{
     height: 100%;
     width: 100%;
 }
 
-html {
+html{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -17,7 +17,7 @@ html {
     --bg-color: #000000;
     --bg-button-color: #1a1a1a;
     --bg-task-color: #2a2a2a;
-    --priary-text-color: #f4f4f4;
+    --primary-text-color: #f4f4f4;
     --delete-color: #ff4d4d;
 
     /* padding variables */
@@ -43,7 +43,7 @@ body {
     color: var(--primary-text-color);
 }
 
-main {
+main{
     height: 100%;
     display: flex;
     flex-direction: column;

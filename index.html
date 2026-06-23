@@ -7,35 +7,34 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav>
-        <div class="left">Kanban</div>
-        <div class="right">
-            <button id="toggle-modal">Add New Task</button>
-        </div>
-    </nav>
-
-    <section class="board">
-        <div id="todo" class="task-column">
-            <div class="heading">
-                <div class="left">To Do</div>
-                <div class="right">Count</div>
+    <main>
+        <nav>
+            <div class="left">Kanban</div>
+            <div class="right">
+                <button id="toggle-modal">Add New Task</button>
             </div>
-        </div>
-
-        <div id="progress" class="task-column">
-            <div class="heading">
-                <div class="left">In Progress</div>
-                <div class="right">Count</div>
+        </nav>
+        <section class="board">
+            <div id="todo" class="task-column">
+                <div class="heading">
+                    <div class="left">To Do</div>
+                    <div class="right">Count</div>
+                </div>
             </div>
-        </div>
-
-        <div id="done" class="task-column">
-            <div class="heading">
-                <div class="left">Done</div>
-                <div class="right">Count</div>
+            <div id="progress" class="task-column">
+                <div class="heading">
+                    <div class="left">In Progress</div>
+                    <div class="right">Count</div>
+                </div>
             </div>
-        </div>
-    </section>
+            <div id="done" class="task-column">
+                <div class="heading">
+                    <div class="left">Done</div>
+                    <div class="right">Count</div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <div class="modal add-new-task">
         <div class="bg"></div>
